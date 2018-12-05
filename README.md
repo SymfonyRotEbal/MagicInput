@@ -77,8 +77,15 @@ $command->description = $_GET['description'];
 
 ```
 $command = new SimpleCommand();
-$command->name        = $_GET['name'];
-$command->description = $_GET['description'];
+$command->name        = $_POST['name'];
+$command->description = $_POST['description'];
+```
+
+
+```
+$command = new SimpleCommand();
+$command->name        = $args[1];
+$command->description = $args[2];
 ```
 
 
@@ -139,6 +146,7 @@ class SimpleCommand extemds ManyInputCommand {
     /**
     * @ManyInput\HttpGet('name')
     * @ManyInput\CliArg(1)
+    * @ManyInput\InputArg('name')
     * @ManyInput\Array(0)
     * @ManyInput\Json('$.data.name')
     **/
@@ -148,10 +156,11 @@ class SimpleCommand extemds ManyInputCommand {
     * @ManyInput\HttpPost('description')
     * @ManyInput\HttpPost('descr')
     * @ManyInput\CliArg(2)
+    * @ManyInput\InputOption('description')
     * @ManyInput\Array(1)
     * @ManyInput\Json('$.data.options.description')
     **/
     public $description;
 }
 ```
-И в зависимости от контекста запуска ManyInputCommand будет вытаскивать нужное значение из нужного контекста.
+И в зависимости от контекста запуска ManyInputCommand будет вытаскивать нужное значение из нужного контекста. Таким образом, привязка команды к разным контекстам запуска будет находиться в одной точке, а не будет разбросана по всему коду.
