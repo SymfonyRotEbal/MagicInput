@@ -1,0 +1,13 @@
+{
+    "name": "4n70w4/many_inputs_concept",
+    "description": "",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "authors": [
+        {
+            "name": "4n70w4"
+        }
+    ]
+}
